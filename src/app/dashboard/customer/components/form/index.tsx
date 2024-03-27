@@ -104,7 +104,7 @@ export function NewCustomerForm({ userId }: { userId: string }) {
       <Input
         type="text"
         name="address"
-        placeholder="Digite o seu endereço"
+        placeholder="CEP, Rua, Número, Bairro"
         error={errors.address?.message}
         register={register}
       />
