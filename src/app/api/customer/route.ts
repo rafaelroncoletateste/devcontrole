@@ -23,11 +23,38 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ message: "Cliente cadastrado com sucesso!" });
-    
   } catch (err) {
     return NextResponse.json(
       { error: "Failed create new customer" },
       { status: 400 }
+    );
+  }
+}
+
+export async function DELETE(request: Request) {
+  const session = await getServerSession(authOptions);
+
+  if (!session || !session.user)
+    return NextResponse.json({ error: "Not authorized" }, { status: 401 });
+
+  const { searchParams } = new URL(request.url);
+  const userId = searchParams.get("id");
+
+  try {
+    await prismaClient.costumer.delete({
+      where: {
+        id: userId as string,
+      },
+    });
+
+    return NextResponse.json(
+      { error: "Cliente deletado com sucesso!" },
+      { status: 200 }
+    );
+  } catch (err) {
+    return NextResponse.json(
+      { error: "Failed delete customer" },
+      { status: 401 }
     );
   }
 }
