@@ -50,6 +50,7 @@ export function NewCustomerForm({ userId }: { userId: string }) {
       userId: userId,
     });
 
+    router.refresh();
     router.replace("/dashboard/customer");
   }
 
@@ -103,7 +104,7 @@ export function NewCustomerForm({ userId }: { userId: string }) {
       <Input
         type="text"
         name="address"
-        placeholder="Digite o seu celular"
+        placeholder="Digite o seu endereço"
         error={errors.address?.message}
         register={register}
       />
