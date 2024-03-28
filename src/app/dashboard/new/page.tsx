@@ -17,6 +17,14 @@ export default async function NewTicket() {
     },
   });
 
+  async function handleRegisterTicket(formData: FormData) {
+    "use server";
+
+    const name = formData.get("name");
+    const description = formData.get("description");
+    const customer = formData.get("customer");
+  }
+
   return (
     <Container>
       <main className="mt-9 mb-2">
@@ -30,7 +38,7 @@ export default async function NewTicket() {
           <h1 className="text-3xl font-bold">Novo chamado</h1>
         </div>
 
-        <form action="#" className="flex flex-col mt-6">
+        <form action={handleRegisterTicket} className="flex flex-col mt-6">
           <label htmlFor="#" className="mb-1 font-medium text-lg">
             Nome do chamado
           </label>
@@ -38,6 +46,7 @@ export default async function NewTicket() {
             type="text"
             placeholder="Digite o nome do chamado"
             required
+            name="name"
             className="w-full border-2 rounded-md px-2 mb-2 h-11"
           />
 
@@ -47,6 +56,7 @@ export default async function NewTicket() {
           <textarea
             placeholder="Descreva o problema"
             required
+            name="description"
             className="w-full border-2 rounded-md px-2 mb-2 h-24 resize-none"
           ></textarea>
 
@@ -55,7 +65,10 @@ export default async function NewTicket() {
               <label htmlFor="#" className="mb-1 font-medium text-lg">
                 Selecione o cliente
               </label>
-              <select className="w-full border-2 rounded-md px-2 mb-2 h-11 resize-none bg-white">
+              <select
+                className="w-full border-2 rounded-md px-2 mb-2 h-11 resize-none bg-white"
+                name="customer"
+              >
                 {customers.map((customer) => (
                   <option key={customer.id} value={customer.id}>
                     {customer.name}
