@@ -22,7 +22,9 @@ export default async function NewTicket() {
 
     const name = formData.get("name");
     const description = formData.get("description");
-    const customer = formData.get("customer");
+    const customerId = formData.get("customer");
+
+    if (!name || !description || !customerId) return;
   }
 
   return (
