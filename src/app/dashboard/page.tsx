@@ -54,6 +54,11 @@ export default async function Dashboard() {
             ))}
           </tbody>
         </table>
+        {(await tickets).length === 0 && (
+          <h1 className="text-gray-600">
+            Nenhum ticket aberto foi encontrado...
+          </h1>
+        )}
       </main>
     </Container>
   );
